@@ -1,0 +1,59 @@
+<header class="header" role="banner">
+<div class="content">
+
+      {% if request.user.is_authenticated %}
+
+    <ul class="social-links list-inline unstyled list-hover-slide">
+      <li style="width: 100%;"><a class="nav-link" href="/logout">Logout</a></li>
+    </ul>
+
+        <div class="card">
+            <div class="firstinfo"><img src="{{ user.profile_image.url }}"/>
+              <div class="profileinfo">
+                <h4>{{ user.username }}</h4>
+                  <h3>{{ user.rating }} R</h3>
+                   {% if user.rating >= 9000 %}
+                      <h3> Python God </h3>
+                   {% elif user.rating >= 5000 and user.rating < 9000 %}
+                      <h3> Python Master </h3>
+                   {% elif user.rating >= 3000 and user.rating < 5000 %}
+                      <h3> Python Ninja </h3>
+                   {% elif user.rating >= 0 and user.rating < 3000 %}
+                      <h3> Python Recruit </h3>
+                  {% endif %}
+              </div>
+            </div>
+          </div>
+
+      {% else %}
+
+    <ul class="social-links list-inline unstyled list-hover-slide">
+      <li style="width: 100%;"><a class="nav-link" href="/auth">SIGN IN / SIGN UP</a></li>
+    </ul>
+
+      {% endif %}
+
+</div>
+  <h1 class="logo">
+    <a href="#">Python <span>contester</span></a>
+  </h1>
+  <div class="nav-wrap">
+    <nav class="main-nav" role="navigation">
+      <ul class="unstyled list-hover-slide">
+        <li><a id="id-contests" href="#">contests</a></li>
+        <li><a id="id-tasks" href="#">tasks</a></li>
+        <li><a id="id-info" href="#">info</a></li>
+        <li><a id="id-rating" href="/rating">ratings</a></li>
+          {% if request.user.is_authenticated %}
+        <li><a id="id-profile" href="/profile">profile</a></li>
+          {% endif %}
+      </ul>
+    </nav>
+    <ul class="social-links list-inline unstyled list-hover-slide">
+      <li><a href="#">Twitter</a></li>
+      <li><a href="#">Google+</a></li>
+      <li><a href="#">GitHub</a></li>
+      <li><a href="#">CodePen</a></li>
+    </ul>
+  </div>
+</header>

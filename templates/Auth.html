@@ -1,0 +1,113 @@
+{% load crispy_forms_tags %}
+{% load socialaccount %}
+{% load static %}
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"><head>
+<meta charset="UTF-8">
+  <title>Login & Register</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{% static 'css/auth_css.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+<div class="form">
+
+  <ul class="tab-group">
+    <li class="tab active"><a href="#login">Log In</a></li>
+    <li class="tab"><a href="#signup">Register</a></li>
+  </ul>
+
+  <div class="tab-content">
+
+      <div id="login">
+      <h1>Welcome!</h1>
+        {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+              <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      <form action="/login" method="post">
+        {% csrf_token %}
+        <div class="field-wrap">
+          <label>
+            Username<span class="req"></span>
+          </label>
+          <input type="username" name="username" required autocomplete="off" />
+        </div>
+
+        <div class="field-wrap">
+          <label>
+            Password<span class="req"></span>
+          </label>
+          <input type="password" name="password" required autocomplete="off" />
+        </div>
+
+        <button class="button button-block" />Log In</button>
+
+      </form>
+
+    </div>
+
+
+    <div id="signup">
+      <h1>Register</h1>
+      {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+              <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      <form action="/register" method="post">
+        {% csrf_token %}
+        <div class="field-wrap">
+          <label>
+            Username<span class="req">*</span>
+          </label>
+          <input type="text" name="username" required autocomplete="off" />
+        </div>
+
+        <div class="field-wrap">
+          <label>
+            Email<span class="req">*</span>
+          </label>
+          <input type="email" name="email" required autocomplete="off" />
+        </div>
+
+        <div class="field-wrap">
+          <label>
+            Password<span class="req">*Minimum 6 characters!</span>
+          </label>
+          <input type="password" name="password1" required autocomplete="off" />
+        </div>
+
+        <div class="field-wrap">
+          <label>
+            Confirm password<span class="req">*Minimum 6 characters!</span>
+          </label>
+          <input type="password" name="password2" required autocomplete="off" />
+        </div>
+        <button type="submit" class="button button-block" />Register</button>
+
+      </form>
+    </div>
+
+  </div><!-- tab-content -->
+        <a href="/password_reset">Forgot password?</a>
+
+</div> <!-- /form -->
+  <div class=" signin text-center">
+
+    <a href="{% provider_login_url 'github' %}" class="text-dark"><img src="media/pics/GitHubLogo.png" style="width:20rem; height:auto"></a>
+  </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="{% static 'js/auth_js.js' %}"></script>
+
+</body>
+</html>

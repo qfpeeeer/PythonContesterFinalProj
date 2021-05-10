@@ -1,0 +1,46 @@
+<section-title>Tasks</section-title>
+<div class="accordion">
+ {% for task in tasks %}
+  <div class="accordion-item">
+    <div class="accordion-item-header">
+      {{ task.title }}
+    <a href="#" class="btn btn-bubble">solve</a>
+    </div>
+    <div class="accordion-item-body">
+      <div class="accordion-item-body-content">
+          {{ task.description }}
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+
+<div class="contests_selection">
+<form>
+  <label for="001">New</label>
+  <input id="001" type="radio" name="r" value="1" checked>
+  <label for="002">Popular</label>
+  <input id="002" type="radio" name="r" value="2">
+</form>
+<form>
+  <label for="01">easy</label>
+  <input id="01" type="radio" name="r" value="1" checked>
+  <label for="02">medium</label>
+  <input id="02" type="radio" name="r" value="2">
+  <label for="03">hard</label>
+  <input id="03" type="radio" name="r" value="3">
+  <label for="04">very hard</label>
+  <input id="04" type="radio" name="r" value="4">
+</form>
+<div id="checklist">
+  <input id="1" type="checkbox" name="r" value="1">
+  <label for="1">collections</label>
+  <input id="2" type="checkbox" name="r" value="2">
+  <label for="2">string</label>
+  <input id="3" type="checkbox" name="r" value="3">
+  <label for="3">math</label>
+  <input id="4" type="checkbox" name="r" value="4">
+  <label for="4">data structure</label>
+</div>
+</div>
+
