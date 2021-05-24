@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ task.title }}</title>
+    <link rel="stylesheet" href="{% static 'css/task_page_css.css' %}">
+</head>
+<body>
+
+
+<!-- TAB CONTROLLERS -->
+<input id="panel-2-ctrl" class="panel-radios" type="radio" name="tab-radios" checked>
+
+
+<header id="introduction">
+
+</header>
+
+<!-- TABS LIST -->
+<ul id="tabs-list">
+    <li id="li-for-panel-2">
+        <label class="panel-label" for="panel-2-ctrl">Result</label>
+    </li>
+</ul>
+
+<!-- THE PANELS -->
+<article id="panels">
+    <div class="container">
+        <section id="panel-2">
+            <main>
+                <h2><a href="{{ taskLink }}">{{ task.title }}</a></h2>
+                <p>{{ res }} / {{ totalNumOfTestCases }} test cases passed. </p>
+                <p>status:
+                    {% if accepted %}
+                        <span style="color:#00FF00">Accepted</span>
+                    {% elif failed %}
+                        <span style="color:#FB667A">Failed</span>
+                    {% endif %}
+                </p>
+            </main>
+        </section>
+    </div>
+</article>
+
+<script src="{% static 'js/task_page_js.js' %}"></script>
+
+</body>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>
