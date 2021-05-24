@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-
     'allauth.socialaccount.providers.github',  # for google auth
 ]
 
@@ -104,7 +103,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'contester_DB',
         'USER': 'postgres',
-        'PASSWORD': 'lbvfi2281',
+        'PASSWORD': '123',
         'HOST': 'localhost'
     }
 }

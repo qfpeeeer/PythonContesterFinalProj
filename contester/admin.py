@@ -6,6 +6,7 @@ from django.contrib.auth.admin import UserAdmin
 
 admin.site.register(Contest)
 admin.site.register(Task)
+admin.site.register(Document)
 
 
 class AccountAdmin(UserAdmin):

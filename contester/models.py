@@ -37,7 +37,7 @@ def get_profile_image_filepath(self, filename):
 
 
 def get_default_profile_image():
-    return "default_media/default_profile_image.png"
+    return "default_media/default_profile-image.png"
 
 
 class Account(AbstractBaseUser):
@@ -51,7 +51,8 @@ class Account(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
-    profile_image = models.ImageField(max_length=255, upload_to=get_profile_image_filepath, null=True, blank=True, default=get_default_profile_image)
+    profile_image = models.ImageField(max_length=255, upload_to=get_profile_image_filepath, null=True, blank=True,
+                                      default=get_default_profile_image)
     hide_email = models.BooleanField(default=True)
     rating = models.IntegerField(default=0, blank=True)
 
@@ -74,7 +75,7 @@ class Account(AbstractBaseUser):
 
 
 class Contest(models.Model):
-    title = models.CharField(max_length=32)
+    title = models.CharField(max_length=100)
     description = models.TextField()
     time_interval = models.TimeField(blank=True, null=True)
     user_counter = models.IntegerField(default=0)
@@ -83,13 +84,31 @@ class Contest(models.Model):
 
 
 class Task(models.Model):
-    title = models.CharField(max_length=32)
-    description = models.TextField()
+    title = models.CharField(max_length=100)
+    description = models.TextField(max_length=1000)
+    input_description = models.TextField(max_length=1000)
+    output_description = models.TextField(max_length=1000)
     complexity = models.CharField(default=None, blank=True, null=True, max_length=10)
     topics = ArrayField(models.CharField(default=list, blank=True, null=True, max_length=32))
     user_counter = models.IntegerField(blank=True, default=0)
     points = models.IntegerField()
     contest = models.ForeignKey(Contest, blank=True, null=True, on_delete=models.SET_NULL)
-    image = models.ImageField(default=None,blank=True, null=True, upload_to='task_image')
+    image = models.ImageField(default=None, blank=True, null=True, upload_to='task_image')
     note = models.TextField(default=None, blank=True, null=True)
     example = models.TextField(default=None, blank=True, null=True)
+
+
+class Document(models.Model):
+    id = models.AutoField(primary_key=True)
+    docfile = models.FileField(upload_to='codes/',
+                               default='codes/empty.txt')
+
+
+class SuggestedTask(models.Model):
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=100)
+    difficulty = models.CharField(max_length=100)
+    source = models.CharField(max_length=100)
+    isOriginal = models.BooleanField()
+    description = models.TextField()
+    solution = models.TextField()

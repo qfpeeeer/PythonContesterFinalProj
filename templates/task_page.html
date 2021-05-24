@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ task.title }}</title>
+    <link rel="stylesheet" href="{% static 'css/task_page_css.css' %}">
+</head>
+<body>
+
+
+<!-- TAB CONTROLLERS -->
+<input id="panel-2-ctrl" class="panel-radios" type="radio" name="tab-radios" checked>
+<input id="panel-3-ctrl" class="panel-radios" type="radio" name="tab-radios">
+<input id="panel-4-ctrl" class="panel-radios" type="radio" name="tab-radios">
+<input id="panel-5-ctrl" class="panel-radios" type="radio" name="tab-radios">
+<input id="nav-ctrl" class="panel-radios" type="checkbox" name="nav-checkbox">
+
+<header id="introduction">
+
+</header>
+
+<!-- TABS LIST -->
+<ul id="tabs-list">
+    <!-- MENU TOGGLE -->
+    <!--INLINE-BLOCK FIX
+   -->
+    <li id="li-for-panel-2">
+        <label class="panel-label" for="panel-2-ctrl">Problem</label>
+    </li>
+    <!--INLINE-BLOCK FIX
+   -->
+    <li id="li-for-panel-3">
+        <label class="panel-label" for="panel-3-ctrl">Your code</label>
+    </li>
+    <!--INLINE-BLOCK FIX
+   -->
+    <li id="li-for-panel-4">
+        <label class="panel-label" for="panel-4-ctrl">Submissions</label>
+    </li>
+    <!--INLINE-BLOCK FIX
+   -->
+    <li id="li-for-panel-5" class="last">
+        <label class="panel-label" for="panel-5-ctrl">Solution</label>
+    </li>
+    <label id="close-nav-label" for="nav-ctrl">Close</label>
+</ul>
+
+<!-- THE PANELS -->
+<article id="panels">
+    <div class="container">
+        <section id="panel-2">
+            <main>
+                <center><h2>{{ task.title }}</h2></center>
+                <pre>{{ task.description }}</pre>
+                <hr>
+                <h3>Input format</h3>
+                <pre>{{ task.input_description }}</pre>
+                <h3>Output format</h3>
+                <pre>{{ task.output_description }}</pre>
+                <hr>
+                <h3>Example</h3>
+                <pre>{{ task.example }}</pre>
+            </main>
+        </section>
+        <section id="panel-3">
+            <main>
+                <h1>Your code</h1>
+                <form action="{% url 'run_sh' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <p>{{ form.non_field_errors }}</p>
+                    <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+                    <p>
+                        {{ form.docfile.errors }}
+                        {{ form.docfile }}
+                    </p>
+                    <input type="hidden" name="task_id" value="{{ task_id }}">
+                    <p><input type="submit" value="Upload"/></p>
+                </form>
+            </main>
+
+        </section>
+        <section id="panel-4">
+            <main>
+                <h1>You have not submitted any code!</h1>
+            </main>
+        </section>
+        <section id="panel-5">
+            <main>
+                <h1>This section is allowed if you your code is correct</h1>
+            </main>
+        </section>
+    </div>
+</article>
+
+<script src="{% static 'js/task_page_js.js' %}"></script>
+
+</body>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>
