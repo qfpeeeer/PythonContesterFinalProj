@@ -232,7 +232,7 @@ def test_cases(request):
             allTestCases.append(testCase)
 
         newdoc = Document(docfile=request.FILES['docfile'])
-        path = path[:len(path)-5] # <- deleteing 'tests'
+        path = path[:len(path) - 5]  # <- deleteing 'tests'
 
         with open(path + "authorSolution.py", 'wb') as file:
             file.write(newdoc.docfile.read())
@@ -258,8 +258,39 @@ def test_cases(request):
 
 def editTask(request, id):
     if request.method == 'POST':
-        pass
+        task = Task.objects.get(pk=id)
+        task.title = request.POST.get('title', None)
+        task.description = request.POST.get('description', None)
+        task.input_description = request.POST.get('idescription', None)
+        task.output_description = request.POST.get('odescription', None)
+        task.complexity = request.POST.get('complexity', None)
+        task.topics = [request.POST.get('topics', None)]
+        task.points = request.POST.get('points', None)
+        task.save()
+        contests = Contest.objects.all()
+        tasks = Task.objects.all()
+        return render(request, "HomePage.html", {'contests': contests, 'tasks': tasks})
     else:
         task = Task.objects.get(pk=id)
-        testArray = ['a', 'b']
-        return render(request, 'edit_task.html', {"task": task, "testArray": testArray})
+        complexityArray = ['Easy', 'Medium', 'Hard', 'Very Hard']
+        topicsArray = ['Collections', 'String', 'Math', 'Data structure']
+
+        for i in range(0, 4):
+            if task.complexity == complexityArray[i]:
+                tmp = complexityArray[i]
+                complexityArray[i] = complexityArray[0]
+                complexityArray[0] = tmp
+                break
+
+        for i in range(0, 4):
+            if task.topics == topicsArray[i]:
+                tmp = topicsArray[i]
+                topicsArray[i] = topicsArray[0]
+                topicsArray[0] = tmp
+                break
+
+        testCases = ['a', 'b']
+
+        return render(request, 'edit_task.html',
+                      {"task": task, "complexityArray": complexityArray, "topicsArray": topicsArray,
+                       "testCases": testCases})
