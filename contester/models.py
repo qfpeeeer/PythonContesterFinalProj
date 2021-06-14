@@ -55,6 +55,7 @@ class Account(AbstractBaseUser):
                                       default=get_default_profile_image)
     hide_email = models.BooleanField(default=True)
     rating = models.IntegerField(default=0, blank=True)
+    points = models.FloatField(default=0)
 
     objects = MyAccountManager()
 
@@ -74,15 +75,6 @@ class Account(AbstractBaseUser):
         return True
 
 
-class Contest(models.Model):
-    title = models.CharField(max_length=100)
-    description = models.TextField()
-    time_interval = models.TimeField(blank=True, null=True)
-    user_counter = models.IntegerField(default=0)
-    topics = ArrayField(models.CharField(default=list, blank=True, null=True, max_length=32))
-    image = models.ImageField(default=None, blank=True, null=True, upload_to='contest_image')
-
-
 class Task(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=1000)
@@ -92,16 +84,42 @@ class Task(models.Model):
     topics = ArrayField(models.CharField(default=list, blank=True, null=True, max_length=32))
     user_counter = models.IntegerField(blank=True, default=0)
     points = models.IntegerField()
-    contest = models.ForeignKey(Contest, blank=True, null=True, on_delete=models.SET_NULL)
     image = models.ImageField(default=None, blank=True, null=True, upload_to='task_image')
     note = models.TextField(default=None, blank=True, null=True)
     example = models.TextField(default=None, blank=True, null=True)
+    # is_visible = models.BooleanField(default=None, blank=True, null=True)
+    sample_number = models.IntegerField(default=1)
+    first_tc_input = models.TextField(max_length=100)
+    first_tc_output = models.TextField(max_length=100)
+    second_tc_input = models.TextField(max_length=100)
+    second_tc_output = models.TextField(max_length=100)
+    third_tc_input = models.TextField(max_length=100)
+    third_tc_output = models.TextField(max_length=100)
+
+class Submit(models.Model):
+    user_id = models.IntegerField()
+    task_id = models.IntegerField()
+    points = models.FloatField(max_length=100)
+    is_accepted = models.BooleanField(default=False)
+    document_id = models.IntegerField()
+    submited_at = models.DateTimeField(auto_now_add=True)
+
+
+class Contest(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    start_time = models.DateTimeField(blank=True, null=True)
+    duration = models.IntegerField()
+    user_counter = models.IntegerField(default=0)
+    tasks = models.ManyToManyField(Task)
 
 
 class Document(models.Model):
     id = models.AutoField(primary_key=True)
     docfile = models.FileField(upload_to='codes/',
                                default='codes/empty.txt')
+    task_id = models.IntegerField(default=-1)
+    is_author_code = models.BooleanField(default=False)
 
 
 class SuggestedTask(models.Model):

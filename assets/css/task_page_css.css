@@ -429,9 +429,13 @@ label.panel-label:hover {
 }
 
 body {
-  background: #009688;
+  background: #185875;
   color: #444444;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, sans-serif;
+}
+
+h1 a {
+  color: #1d1d1d;
 }
 
 #introduction {
@@ -448,7 +452,7 @@ body {
 main h1 {
   margin-top: 0;
   font-weight: 300;
-  color: #01ce20;
+  color: #131813;
 }
 main p {
   line-height: 1.8;
@@ -487,27 +491,27 @@ label.demo-label:hover {
   margin-top: 8px;
 }
 
-code,
-pre {
-  color: #77b11c;
-  font-family: Inconsolata, "Andale Mono", Andale, monowidth;
-  background-color: #ecf0f1;
-  border: 1px solid #dfdfdf;
-  border-radius: 2px;
-}
+/*code,*/
+/*pre {*/
+/*  color: rgb(52, 45, 45);*/
+/*  font-family: Inconsolata, "Andale Mono", Andale, monowidth;*/
+/*  background-color: #ecf0f1;*/
+/*  border: 1px solid #dfdfdf;*/
+/*  border-radius: 2px;*/
+/*}*/
 
-code {
-  padding: 2px 6px;
-}
+/*code {*/
+/*  padding: 2px 6px;*/
+/*}*/
 
-pre {
-  padding: 12px;
-  line-height: 1.6;
-}
-pre strong {
-  color: #444444;
-  font-weight: normal;
-}
+/*pre {*/
+/*  padding: 12px;*/
+/*  line-height: 1.6;*/
+/*}*/
+/*pre strong {*/
+/*  color: #444444;*/
+/*  font-weight: normal;*/
+/*}*/
 
 
 
@@ -632,3 +636,82 @@ a.token {
 .language-php .variable {
   color: CadetBlue;
 }
+
+
+
+/*TASKS*/
+/* contester */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:700);
+
+section-title{
+  position: absolute;
+  top: 3%;
+  left:45%;
+  font-size: 250%;
+  color: #1d1d1d;
+}
+
+.contests{
+  height: 100%;
+  width: 80%;
+  font-family: "Open Sans Semibold";
+  display: flex;
+  justify-content: space-around;
+  margin-left: 17.5em;
+  margin-top: 10%;
+}
+
+.info  {
+  display: none;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: "Open Sans Semibold";
+  margin-left: 17.5em;
+  margin-top: -2%;
+}
+
+.tasks{
+  height: 100%;
+  width: 80%;
+  font-family: "Open Sans Semibold";
+  display: flex;
+  justify-content: space-around;
+  margin-left: 17.5em;
+  margin-top: 10%;
+}
+
+h1 {
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 2.5rem;
+}
+
+.accordion {
+  horiz-align: center;
+  width: 100%;
+  max-width: 1000px;
+}
+.accordion-item {
+  background-color: #fff;
+  color: #111;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+}
+.accordion-item-header {
+  padding: 0.5rem 3rem 0.5rem 1rem;
+  min-height: 3.5rem;
+  line-height: 1.25rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+@media (max-width: 767px) {
+  html {
+    font-size: 14px;
+  }
+}
+

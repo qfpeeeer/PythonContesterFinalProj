@@ -1,5 +1,4 @@
 $(document).ready(function() {
-$('.tasks').css('display','none');
 $('.info').css('display','none');
     $('#id-contests').click(function(){
             $('.contests').css('display','flex');
@@ -106,3 +105,38 @@ var init = function() {
 doc.on('ready', init);
 
 });
+
+
+$('.sort').click(function (){
+    var tasks = $(".tasks").css("display");
+
+    var val1 = $(".r1:checked").val();
+    var val2 = $(".r2:checked").val();
+
+    var val3 = [];
+
+
+    $('input[name="ch"]:checked').each(function() {
+        val3.push(this.value);
+    });
+
+    if (tasks !== 'none') {
+        window.location = '/sort?val1=' + val1 + '&val2=' + val2 + '&val3=' + val3.toString() + '&section=tasks';
+    } else {
+        window.location = '/sort?val1=' + val1 + '&val2=' + val2 + '&val3=' + val3.toString() + '&section=contests';
+
+    }
+
+    // jQuery.ajax({
+    // url: "/sort",
+    // type: "GET",
+    // contentType: 'application/json; charset=utf-8',
+    // data:{"val1":val1,"val2":val2,"val3":val3.toString()},
+    // success: function (resultData) {
+    //     alert(resultData)
+    // },
+    // error: function (jqXHR, textStatus, errorThrown) {alert("GG");
+    // },
+    // timeout: 120000,
+    // });
+})

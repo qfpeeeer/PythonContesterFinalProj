@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from contester.models import Account
+from contester.models import *
 
 
 # Create your forms here.

@@ -201,6 +201,7 @@ section-title{
 
 .contests{
   height: 100%;
+  width: 80%;
   font-family: "Open Sans Semibold";
   display: flex;
   justify-content: space-around;
@@ -220,8 +221,9 @@ section-title{
 
 .tasks{
   height: 100%;
+  width: 80%;
   font-family: "Open Sans Semibold";
-  display: none;
+  display: flex;
   justify-content: space-around;
   margin-left: 17.5em;
   margin-top: 10%;
@@ -880,6 +882,7 @@ ul {
   background: #e6d068;
 }
 
-
-
+.sort{
+  horiz-align: center;
+}
 

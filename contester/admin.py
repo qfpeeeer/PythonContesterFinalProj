@@ -3,10 +3,10 @@ from .models import *
 from django.contrib.auth.admin import UserAdmin
 
 # Register your models here.
-
 admin.site.register(Contest)
 admin.site.register(Task)
 admin.site.register(Document)
+admin.site.register(Submit)
 
 
 class AccountAdmin(UserAdmin):

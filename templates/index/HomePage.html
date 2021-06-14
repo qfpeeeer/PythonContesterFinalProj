@@ -1,0 +1,21 @@
+
+{% extends 'index/base.html' %}
+
+{% block content%}
+
+{% include "index/header.html" %}
+
+<div class="contests">
+{% include "index/contests.html" %}
+</div>
+
+<div class="tasks">
+{% include "index/tasks.html" %}
+</div>
+
+<div class="info">
+{% include "index/info.html" %}
+</div>
+
+
+{% endblock %}

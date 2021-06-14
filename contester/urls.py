@@ -1,6 +1,9 @@
-from django.urls import path
+from django.urls import include, path
 from . import views
-from django.conf.urls import include, url
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+# router.register(r'users', views.UserViewSet)
 
 urlpatterns = [
     path('', views.index, name="index"),
@@ -10,16 +13,18 @@ urlpatterns = [
     path("login", views.login_request, name="login"),
     path('profile', views.profile, name='profile'),
     path('rating', views.rating, name='rating'),
-    path('test', views.test, name='test'),
     path("logout", views.logout_request, name="logout"),
     path("password_reset", views.password_reset_request, name="password_reset"),
+    path("sort", views.sort, name="sort"),
+    path('contest/<int:id>', views.contest, name="contest"),
 
     path('task/<int:id>', views.getTaskById, name='getTaskById'),
+    path('contest/<int:contest_id>/task/<int:task_id>', views.getTaskByIdForContest, name='getTaskByIdForContest'),
     path('edit-task/<int:id>', views.editTask, name='edit-task'),
-
     path('suggest-new-task', views.suggest_task, name='suggest_task'),
     path('new-task', views.createTask, name='new_task'),
     path('new-test-cases', views.test_cases, name='new_test-cases'),
-    path('list/', views.list, name='list'),
-    path('task/run_sh', views.runscript, name='run_sh'),
+    path('task/run_sh/<int:type>', views.runscript, name='run_sh'),
+
+    path('', include(router.urls)),
 ]
