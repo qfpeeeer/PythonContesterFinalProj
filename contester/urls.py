@@ -2,6 +2,8 @@ from django.urls import include, path
 from . import views
 from rest_framework import routers
 
+from .views import NotificationView
+
 router = routers.DefaultRouter()
 # router.register(r'users', views.UserViewSet)
 
@@ -25,6 +27,12 @@ urlpatterns = [
     path('new-task', views.createTask, name='new_task'),
     path('new-test-cases', views.test_cases, name='new_test-cases'),
     path('task/run_sh/<int:type>', views.runscript, name='run_sh'),
+
+    path('notify', views.notify, name="notify"),
+    path('clearNotification', views.deleteNotification, name="clearNotification"),
+    path('updateprofile',views.update, name="updateprofile"),
+
+    path('notifications/', NotificationView.as_view()),
 
     path('', include(router.urls)),
 ]

@@ -8,7 +8,7 @@
     </div>
     <div class="accordion-item-body">
       <div class="accordion-item-body-content">
-          {{ contest.topics }}<br>
+          {{ contest.topics }} {{ contest.complexity }}<br>
       </div>
     </div>
   </div>
@@ -17,8 +17,6 @@
 
 <div class="contests_selection">
 <form>
-  <label for="001">New</label>
-  <input id="001" type="radio" name="r1" class="r1" value="new">
   <label for="002">Popular</label>
   <input id="002" type="radio" name="r1" class="r1" value="popular">
 </form>

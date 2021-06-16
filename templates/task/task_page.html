@@ -113,7 +113,7 @@
             <main>
                 {% if user.is_authenticated %}
                     <h1>Your code</h1>
-                    <form action="{% url 'run_sh' %}" method="post" enctype="multipart/form-data">
+                    <form action="{% url 'run_sh' 0 %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <p>{{ form.non_field_errors }}</p>
                         <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>

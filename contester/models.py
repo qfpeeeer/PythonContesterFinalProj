@@ -130,3 +130,19 @@ class SuggestedTask(models.Model):
     isOriginal = models.BooleanField()
     description = models.TextField()
     solution = models.TextField()
+
+class ContestSubmit(models.Model):
+    user_id = models.IntegerField()
+    task_id = models.IntegerField()
+    contest_id = models.IntegerField()
+    points = models.FloatField(max_length=100)
+    is_accepted = models.BooleanField(default=False)
+    document_id = models.IntegerField()
+    submited_at = models.DateTimeField(auto_now_add=True)
+
+
+class Notification(models.Model):
+    user_id = models.IntegerField()
+    task_id = models.IntegerField()
+    title = models.CharField(max_length=100, default=None)
+    description = models.TextField(default=None)

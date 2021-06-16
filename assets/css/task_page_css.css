@@ -7,6 +7,90 @@ ul#tabs-list {
   padding: 0;
 }
 
+/*button buble*/
+
+
+.btn-bubble {
+  position: absolute;
+  right: 6%;
+  color: white;
+  background-color: #77b11c;
+  background-repeat: no-repeat;
+}
+
+/*.btn-bubble:hover, .btn-bubble:focus {*/
+/*  -webkit-animation: bubbles 1s forwards ease-out;*/
+/*          animation: bubbles 1s forwards ease-out;*/
+/*  background: radial-gradient(circle at center, rgba(0, 0, 0, 0) 30%, #eeeeff 60%, #eeeeff 65%, rgba(0, 0, 0, 0) 70%) 27% 103% / 1.17em 1.17em, radial-gradient(circle at center, rgba(0, 0, 0, 0) 30%, #eeeeff 60%, #eeeeff 65%, rgba(0, 0, 0, 0) 70%) 37% 113% / 1.01em 1.01em, radial-gradient(circle at center, rgba(0, 0, 0, 0) 30%, #eeeeff 60%, #eeeeff 65%, rgba(0, 0, 0, 0) 70%) -2% 139% / 1.04em 1.04em, radial-gradient(circle at center, rgba(0, 0, 0, 0) 30%, #eeeeff 60%, #eeeeff 65%, rgba(0, 0, 0, 0) 70%) 109% 144% / 0.8em 0.8em, radial-gradient(circle at center, rgba(0, 0, 0, 0) 30%, #eeeeff 60%, #eeeeff 65%, rgba(0, 0, 0, 0) 70%) 4% 131% / 1.03em 1.03em, radial-gradient(circle at center, rgba(0, 0, 0, 0) 30%, #eeeeff 60%, #eeeeff 65%, rgba(0, 0, 0, 0) 70%) 100% 99% / 0.9em 0.9em, radial-gradient(circle at center, rgba(0, 0, 0, 0) 30%, #eeeeff 60%, #eeeeff 65%, rgba(0, 0, 0, 0) 70%) 77% 109% / 0.66em 0.66em, radial-gradient(circle at center, rgba(0, 0, 0, 0) 30%, #eeeeff 60%, #eeeeff 65%, rgba(0, 0, 0, 0) 70%) -7% 95% / 0.57em 0.57em, radial-gradient(circle at center, rgba(0, 0, 0, 0) 30%, #eeeeff 60%, #eeeeff 65%, rgba(0, 0, 0, 0) 70%) -1% 126% / 0.72em 0.72em, radial-gradient(circle at center, rgba(0, 0, 0, 0) 30%, #eeeeff 60%, #eeeeff 65%, rgba(0, 0, 0, 0) 70%) 97% 148% / 1.07em 1.07em, radial-gradient(circle at center, rgba(0, 0, 0, 0) 30%, #eeeeff 60%, #eeeeff 65%, rgba(0, 0, 0, 0) 70%) -9% 133% / 0.77em 0.77em;*/
+/*  background-color: #77b11c;*/
+/*  background-repeat: no-repeat;*/
+/*}*/
+
+/*@-webkit-keyframes bubbles {*/
+/*  100% {*/
+/*    background-position: 24% 14%, 29% -3%, -2% -204%, 106% -275%, 5% -398%, 104% -380%, 68% -223%, -2% -237%, 4% -12%, 92% -117%, -4% -60%;*/
+/*    box-shadow: inset 0 -6.5em 0 #0072c4;*/
+/*  }*/
+/*}*/
+
+/*@keyframes bubbles {*/
+/*  100% {*/
+/*    background-position: 24% 14%, 29% -3%, -2% -204%, 106% -275%, 5% -398%, 104% -380%, 68% -223%, -2% -237%, 4% -12%, 92% -117%, -4% -60%;*/
+/*    box-shadow: inset 0 -6.5em 0 #0072c4;*/
+/*  }*/
+/*}*/
+
+/*.btn {*/
+/*  display: inline-block;*/
+/*  text-decoration: none;*/
+/*  padding: 1em 2em;*/
+/*}*/
+
+
+.accordion {
+  width: 70%;
+  max-width: 1000px;
+}
+.accordion-item {
+  background-color: #fff;
+  color: #111;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+}
+.accordion-item-header {
+  padding: 0.5rem 3rem 0.5rem 1rem;
+  min-height: 3.5rem;
+  line-height: 1.25rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+.accordion-item-header::after {
+  content: "\002B";
+  font-size: 2rem;
+  position: absolute;
+  right: 1rem;
+}
+.accordion-item-header.active::after {
+  content: "\2212";
+}
+.accordion-item-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+.accordion-item-body-content {
+  padding: 1rem;
+  line-height: 1.5rem;
+  border-top: 1px solid;
+  border-image: linear-gradient(to right, transparent, #34495e, transparent) 1;
+}
+
+
+
 label.panel-label {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -714,4 +798,3 @@ h1 {
     font-size: 14px;
   }
 }
-

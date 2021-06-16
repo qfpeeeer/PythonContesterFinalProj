@@ -19,7 +19,7 @@ def sort(request):
     res = []
 
     if val1 == "undefined" and val2 == "undefined" and len(val3) == 1:
-        return render(request, "HomePage.html", {'contests': res, 'tasks': tasks, 'section': 'contests'})
+        return render(request, "index/HomePage.html", {'contests': res, 'tasks': tasks, 'section': 'contests'})
 
     if section.lower() == 'tasks':
         items = tasks
@@ -35,9 +35,9 @@ def sort(request):
         result = sorted(items, key=lambda it: it.user_counter)
 
     if section.lower() == 'tasks':
-        return render(request, "HomePage.html", {'contests': items, 'tasks': res, 'section': 'tasks'})
+        return render(request, "index/HomePage.html", {'contests': items, 'tasks': res, 'section': 'tasks'})
 
-    return render(request, "HomePage.html", {'contests': res, 'tasks': items, 'section': 'contests'})
+    return render(request, "index/HomePage.html", {'contests': res, 'tasks': items, 'section': 'contests'})
 
 
 def contest(request, id):
@@ -67,7 +67,7 @@ def getTaskByIdForContest(request, contest_id, task_id):
         finished = True
 
     form = DocumentForm()
-    my_submits_qs = Submit.objects.filter(user_id=request.user.id, task_id=task_id)
+    my_submits_qs = ContestSubmit.objects.filter(contest_id=contest_id, user_id=request.user.id, task_id=task_id)
     my_submits = []
     has_accepted = False
     for submit in my_submits_qs:

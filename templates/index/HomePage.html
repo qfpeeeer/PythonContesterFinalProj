@@ -1,15 +1,14 @@
-
 {% extends 'index/base.html' %}
 
 {% block content%}
 
 {% include "index/header.html" %}
 
-<div class="contests">
+<div class="contests" {% if section == 'tasks' %} style="display: none;" {% endif %}>
 {% include "index/contests.html" %}
 </div>
 
-<div class="tasks">
+<div class="tasks" {% if section == 'contests' %} style="display: none;" {% endif %}>
 {% include "index/tasks.html" %}
 </div>
 
@@ -17,5 +16,10 @@
 {% include "index/info.html" %}
 </div>
 
+    {% if notifications %}
+<div class="notification" style="position:fixed; right: 3%; bottom: 3%; display: none;">
+{% include "index/notifyBlock.html" %}
+</div>
+{% endif %}
 
 {% endblock %}

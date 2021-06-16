@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/task_page_css.css' %}">
+
 </head>
 <body>
 
@@ -19,7 +20,8 @@
 {% else %}
 <input id="panel-3-ctrl" class="panel-radios" type="radio" name="tab-radios">
 {% endif %}
-<input id="panel-4-ctrl" class="panel-radios" type="radio" name="tab-radios">
+{#<input id="panel-4-ctrl" class="panel-radios" type="radio" name="tab-radios">#}
+
 <input id="nav-ctrl" class="panel-radios" type="checkbox" name="nav-checkbox">
 
 <header id="introduction">
@@ -37,21 +39,21 @@
     <!--INLINE-BLOCK FIX
    -->
     <li id="li-for-panel-2">
-        <label class="panel-label" for="panel-2-ctrl">Problem</label>
+        <label class="panel-label" for="panel-2-ctrl">Info</label>
     </li>
     <!--INLINE-BLOCK FIX
    -->
     {% if finished %}
     {% else %}
     <li id="li-for-panel-3">
-        <label class="panel-label" for="panel-3-ctrl">Submit code</label>
+        <label class="panel-label" for="panel-3-ctrl">Tasks</label>
     </li>
     {% endif %}
     <!--INLINE-BLOCK FIX
    -->
-    <li id="li-for-panel-4">
-        <label class="panel-label" for="panel-4-ctrl">Submissions</label>
-    </li>
+{#    <li id="li-for-panel-4">#}
+{#        <label class="panel-label" for="panel-4-ctrl">Submissions</label>#}
+{#    </li>#}
     <!--INLINE-BLOCK FIX
    -->
     <label id="close-nav-label" for="nav-ctrl">Close</label>
@@ -62,76 +64,40 @@
     <div class="container">
         <section id="panel-2">
             <main>
-                <center><h2>{{ task.title }}</h2>
-                    <h5>{{ task.complexity }} - {{ task.points }}</h5>
-                </center>
-
-                <p>{{ task.description|linebreaks }}</p>
-                <hr>
-                <h3>Input format</h3>
-                <p>{{ task.input_description|linebreaks }}</p>
-                <h3>Output format</h3>
-                <p>{{ task.output_description|linebreaks }}</p>
-                <hr>
-                <h3>Examples</h3>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">INPUT</th>
-                        <th scope="col">OUTPUT</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% if task.first_tc_input %}
-                        <tr>
-                            <td>
-                                <pre>{{ task.first_tc_input }}</pre>
-                            </td>
-                            <td>
-                                <pre>{{ task.first_tc_output }}</pre>
-                            </td>
-                        </tr>
-                    {% endif %}
-                    {% if task.second_tc_input %}
-                        <tr>
-                            <td>
-                                <pre>{{ task.second_tc_input }}</pre>
-                            </td>
-                            <td>
-                                <pre>{{ task.second_tc_output }}</pre>
-                            </td>
-                        </tr>
-                    {% endif %}
-                    {% if task.third_tc_input %}
-                        <tr>
-                            <td>
-                                <pre>{{ task.third_tc_input }}</pre>
-                            </td>
-                            <td>
-                                <pre>{{ task.third_tc_output }}</pre>
-                            </td>
-                        </tr>
-                    {% endif %}
-                    </tbody>
-                </table>
+                <h3>Contest description: {{ contest.description }}</h3>
+                <h3>Contest start time: {{ contest.start_time }}</h3>
+                <h3>Contest duration: {{ contest.duration }}</h3>
             </main>
         </section>
         <section id="panel-3">
             <main>
                 {% if user.is_authenticated %}
-                    <h1>Your code</h1>
-                    <form action="{% url 'run_sh' 1 %}" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <input type="hidden" value="{{ contest.id }}" name="contest_id">
-                        <p>{{ form.non_field_errors }}</p>
-                        <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
-                        <p>
-                            {{ form.docfile.errors }}
-                            {{ form.docfile }}
-                        </p>
-                        <input type="hidden" name="task_id" value="{{ task.id }}">
-                        <p><input type="submit" value="Upload"/></p>
-                    </form>
+{#                    <h1>Your code</h1>#}
+{#                    <form action="{% url 'run_sh' contest.id %}" method="post" enctype="multipart/form-data">#}
+{#                        {% csrf_token %}#}
+{#                        <p>{{ form.non_field_errors }}</p>#}
+{#                        <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>#}
+{#                        <p>#}
+{#                            {{ form.docfile.errors }}#}
+{#                            {{ form.docfile }}#}
+{#                        </p>#}
+{#                        <input type="hidden" name="task_id" value="{{ task.id }}">#}
+{#                        <p><input type="submit" value="Upload"/></p>#}
+{#                    </form>#}
+                <div class="accordion">
+                    {% if contest is None %}
+                        <h1>No tasks found</h1>
+                    {% endif %}
+                     {% for task in contest.tasks.all %}
+                          <div class="accordion-item">
+                            <div class="accordion-item-header">
+                              {{ task.title }}
+                            <a href="{{ contest.id }}/task/{{ task.id }}" class="btn btn-bubble">solve</a>
+                            </div>
+                          </div>
+                     {% endfor %}
+                    </div>
+
                 {% else %}
                     <h1>Please login before sending to checker</h1>
                 {% endif %}
@@ -170,6 +136,7 @@
 </article>
 
 <script src="{% static 'js/task_page_js.js' %}"></script>
+<script src="{% static 'js/index_js.js' %}"></script>
 
 </body>
 </html>

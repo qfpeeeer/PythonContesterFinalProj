@@ -7,7 +7,7 @@ admin.site.register(Contest)
 admin.site.register(Task)
 admin.site.register(Document)
 admin.site.register(Submit)
-
+admin.site.register(Notification)
 
 class AccountAdmin(UserAdmin):
     list_display = ('email', 'username', 'date_joined', 'last_login', 'is_admin', 'is_staff')

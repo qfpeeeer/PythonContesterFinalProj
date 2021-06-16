@@ -16,7 +16,7 @@ from contester.models import *
 
 
 def auth(request):
-    return render(request, "Auth.html")
+    return render(request, "auth/Auth.html")
 
 
 def login_request(request):
@@ -36,7 +36,7 @@ def login_request(request):
         else:
             messages.error(request, "Invalid username or password.")
     form = AuthenticationForm()
-    return render(request=request, template_name="Auth.html", context={"login_form": form})
+    return render(request=request, template_name="auth/Auth.html", context={"login_form": form})
 
 
 def logout_request(request):
@@ -55,7 +55,7 @@ def register_request(request):
             return redirect("index")
         messages.error(request, "Unsuccessful registration. Invalid information.")
     form = NewUserForm
-    return render(request=request, template_name="Auth.html", context={"register_form": form})
+    return render(request=request, template_name="auth/Auth.html", context={"register_form": form})
 
 
 def password_reset_request(request):
